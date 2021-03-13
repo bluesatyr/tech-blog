@@ -57,13 +57,13 @@ router.post('/', (req, res) => {
         password: req.body.password
     })
       .then(dbUserData => {
-          /* req.session.save(() => {
+          req.session.save(() => {
             // declare session variables
             res.session.user_id = dbUserData.id;
             req.session.username = dbUserData.username;
-            req.session.loggedIn = true; */
+            req.session.loggedIn = true;
             res.json(dbUserData);
-        //});
+        });
     })
       .catch(err => {
           console.log(err);
@@ -123,12 +123,14 @@ router.put('/:id', (req, res) => {
         }
     })
       .then(dbUserData => {
-        if (!dbUserData[0]) {
-          res.status(404).json({ message: 'No user found with this id' });
-          return;
-        }
-        res.json(dbUserData);
-      })
+        req.session.save(() => {
+          req.session.user_id = dbUserData.id;
+          req.session.username = dbUserData.username;
+          req.session.loggedIn = true;
+      
+          res.json(dbUserData);
+        });
+    })
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
