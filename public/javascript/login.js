@@ -16,12 +16,25 @@ async function signupFormHandler(event) {
     
     // check the response status
     if (response.ok) {
-        window.alert('Your Account has been created. Please Sign-In using your new Username and Password.'); // Add a message to the dom that user needs to sign in
+      const res = await fetch('/api/users/login', {
+        method: 'post',
+        body: JSON.stringify({
+          username,
+          password
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+  
+      if (response.ok) {
+        document.location.replace('/dashboard');
+      } else {
+        alert(response.statusText);
+      }
+    }
     } else {
         alert(response.statusText);
     }
-  }
-}
+};
 
 async function loginFormHandler(event) {
   event.preventDefault();
