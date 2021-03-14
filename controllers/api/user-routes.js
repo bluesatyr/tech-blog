@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require("../../models");
-//const withAuth = require('../../utils/auth');
-// USAGE: app.put('/', withAuth, (req,res)... )
+const withAuth = require('../../utils/auth');
 
 // GET /api/users
 router.get('/', (req, res) => {
@@ -57,13 +56,13 @@ router.post('/', (req, res) => {
         password: req.body.password
     })
       .then(dbUserData => {
-          /*req.session.save(() => {
+          req.session.save(() => {
             // declare session variables
             res.session.user_id = dbUserData.id;
             req.session.username = dbUserData.username;
             req.session.loggedIn = true; 
             //res.json(dbUserData);
-        }); */
+        }); 
         res.json(dbUserData);
     })
       .catch(err => {
@@ -114,7 +113,7 @@ router.post('/logout', (req, res) => {
 }); 
 
 // PUT /api/users/1
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     // expects {username: 'Lernantino', password: 'password1234'}
     // pass in req.body instead to only update what's passed through
     User.update(req.body, {
@@ -139,7 +138,7 @@ router.put('/:id', (req, res) => {
   });
 
 // DELETE /api/users/1
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     User.destroy({
         where: {
             id: req.params.id
