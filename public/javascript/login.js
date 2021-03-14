@@ -16,7 +16,7 @@ async function signupFormHandler(event) {
     
     // check the response status
     if (response.ok) {
-        console.log('success');
+        window.alert('Your Account has been created. Please Sign-In using your new Username and Password.'); // Add a message to the dom that user needs to sign in
     } else {
         alert(response.statusText);
     }

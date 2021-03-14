@@ -13,22 +13,22 @@
     <header>
       <nav>
         <a href="/">home</a>
+        {{#if loggedIn}}
         <a href="/dashboard">dashboard</a>
+        <button id="logout" class="btn-no-style">logout</button>
+        {{else}}
         <a href="/login">login</a>
+        {{/if}}
       </nav>
       <h1>
         <a href="/">Tech Blog</a>
       </h1>
-      
     </header>
     <main>
       {{{ body }}}
     </main>
-    <footer>
-      Thanks for visiting!
-    </footer>
   </div>
-  
+    <footer>
+      Thanks for visiting!!
+    </footer>
 </body>
-
-</html>

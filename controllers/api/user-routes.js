@@ -57,23 +57,24 @@ router.post('/', (req, res) => {
         password: req.body.password
     })
       .then(dbUserData => {
-          req.session.save(() => {
+          /*req.session.save(() => {
             // declare session variables
             res.session.user_id = dbUserData.id;
             req.session.username = dbUserData.username;
-            req.session.loggedIn = true;
-            res.json(dbUserData);
-        });
+            req.session.loggedIn = true; 
+            //res.json(dbUserData);
+        }); */
+        res.json(dbUserData);
     })
       .catch(err => {
           console.log(err);
           res.status(500).json(err);
-      });
+    });
 });
 
 // POST /api/users/login
 router.post('/login', (req, res) => {
-    // expects {username: 'lernantino', password: 'password1234'}
+    // expects {username: 'bluesatyr', password: 'password1234'}
     User.findOne({
         where: {
             username: req.body.username
