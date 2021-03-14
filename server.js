@@ -37,6 +37,6 @@ app.use(routes);
 
 // turn on connection to db and server
 // force: true === DROP DATABASE & CREATE DATABASE & TABLES on startup; false leaves database in place
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
     app.listen(PORT, () => console.log('Now listening'));
 });
