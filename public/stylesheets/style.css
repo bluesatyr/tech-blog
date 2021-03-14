@@ -20,6 +20,10 @@
   a:hover {
     color: #3486eb;
   }
+
+  ul {
+    list-style: none;
+  }
   
   button {
     background-color: #225ca3;
@@ -39,6 +43,12 @@
   .post-list {
     margin: 0;
     padding: 0;
+    padding-top: 10px;;
+  }
+
+  .post {
+    border-bottom: 1px solid #225ca3;
+    padding-top: 15px;
   }
   
   textarea, input {
@@ -152,19 +162,20 @@
     font-size: 90%;
     color: #7d7d7d;
   }
+
+  .title {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .title a {
+    font-size: 1.5em;
+  }
   
   .edit-link {
     display: block;
     margin: -1.5% 0 2% 0;
-  }
-  
-  .upvote-btn {
-    background-color: #197d0f;
-    transition: background-color .1s;
-  }
-  
-  .upvote-btn:hover {
-    background-color: #1f9c13;
   }
   
   .comment-form {
